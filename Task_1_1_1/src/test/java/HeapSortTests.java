@@ -1,23 +1,16 @@
-import static org.junit.Assert.*;
+package ru.nsu.fit.oop.lab1;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.Test;
+
 
 import java.util.Arrays;
-import org.junit.Test;
+
+import static org.junit.Assert.assertArrayEquals;
 
 public class HeapSortTests {
 
-    @Test
-    public void simpleTests() {
-        int[] arr1 = {4, 5, 1, 0, -5};
-        int[] sortedArr1 = arr1.clone();
-        Arrays.sort(sortedArr1);
-        HeapSort.heapSort(arr1);
-        assertArrayEquals(sortedArr1, arr1);
-        int[] arr2 = {99, 23, -38, -93, 0, 0, -67, 8, 39, -34};
-        int[] sortedArr2 = arr2.clone();
-        Arrays.sort(sortedArr2);
-        HeapSort.heapSort(arr2);
-        assertArrayEquals(sortedArr2, arr2);
-    }
 
     @Test
     public void testEmptyArray() {
@@ -36,4 +29,15 @@ public class HeapSortTests {
         HeapSort.heapSort(arr);
         assertArrayEquals(arr, sortedArr);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"4 5 1 0 -5", "99 23 -38 -93 0 0 -67 8 39 -34"})
+    public void simpleTests(String str) {
+        int[] arr = Arrays.stream(str.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] sortedArr = arr.clone();
+        Arrays.sort(sortedArr);
+        HeapSort.heapSort(arr);
+        assertArrayEquals(sortedArr, arr);
+    }
+
 }
