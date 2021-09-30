@@ -40,11 +40,10 @@ public class HeapSort {
 
     /**
      * Find root of the tree (heap) preserving the heap invariant
-     * Swap with elem in last pos
+     * Swap with elem in last position
      *
      * @param arr heap
      * @param len len of heap
-     * @return the largest element of the heap (root of the tree)
      */
     private static void takeRoot(int[] arr, int len) {
         int last = len - 1;
