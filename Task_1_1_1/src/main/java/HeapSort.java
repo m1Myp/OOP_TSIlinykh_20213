@@ -1,3 +1,6 @@
+package ru.nsu.fit.oop.lab1;
+
+
 import java.util.Arrays;
 
 public class HeapSort {
@@ -27,30 +30,29 @@ public class HeapSort {
         if (right < N && arr[current] > arr[right])
             current = right;
         if (current != id) {
-            //arr[current] = returnFirst(arr[id], arr[id] = arr[current]);
-            int t = arr[current];
+            arr[current] = returnFirst(arr[id], arr[id] = arr[current]);
+            /*int t = arr[current];
             arr[current] = arr[id];
-            arr[id] = t;
+            arr[id] = t;*/
             siftDown(arr, current, N);
         }
     }
 
     /**
-     * Return the root of the tree (heap) preserving the heap invariant
+     * Find root of the tree (heap) preserving the heap invariant
+     * Swap with elem in last pos
      *
      * @param arr heap
      * @param len len of heap
      * @return the largest element of the heap (root of the tree)
      */
-    private static int takeRoot(int[] arr, int len) {
+    private static void takeRoot(int[] arr, int len) {
         int last = len - 1;
-        int returnValue = arr[0];
-        //arr[0] = returnFirst(arr[last], arr[last] = arr[0]);
-        int t = arr[0];
+        arr[0] = returnFirst(arr[last], arr[last] = arr[0]);
+        /*int t = arr[0];
         arr[0] = arr[last];
-        arr[last] = t;
+        arr[last] = t;*/
         siftDown(arr, 0, len - 1);
-        return arr[last];
     }
 
     /**
@@ -63,15 +65,12 @@ public class HeapSort {
         for (int i = len-1; i >= 0; i--)
             siftDown(arr, i, len);
 
-        int[] temp = new int[len];
-        int i = 0;
         while(len > 0) {
-            temp[i] = takeRoot(arr, len);
+            takeRoot(arr, len);
             --len;
-            ++i;
         }
-        for(int j = 0; j < arr.length; ++j){
-            arr[j] = temp[j];
+        for(int j = 0; j < arr.length/2; ++j){
+            arr[j] = returnFirst(arr[(arr.length-1)-j], arr[(arr.length-1)-j] = arr[j]);
         }
     }
 }
