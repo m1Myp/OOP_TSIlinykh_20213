@@ -5,12 +5,15 @@ import java.util.Arrays;
 
 public class HeapSort {
     /**
-     * Return first elements (strange swap realization)
+     * Swap two elements
      *
-     * @param x,y - elements
+     * @param arr - array where elements swaps
+     * @param x,y - id of this elements
      */
-    private static int returnFirst(int x, int y) {
-        return x;
+    private static void swap(int[] arr, int x, int y) {
+        int t = arr[x];
+        arr[x] = arr[y];
+        arr[y] = t;
     }
 
     /**
@@ -30,10 +33,7 @@ public class HeapSort {
         if (right < N && arr[current] > arr[right])
             current = right;
         if (current != id) {
-            arr[current] = returnFirst(arr[id], arr[id] = arr[current]);
-            /*int t = arr[current];
-            arr[current] = arr[id];
-            arr[id] = t;*/
+            swap(arr, current, id);
             siftDown(arr, current, N);
         }
     }
@@ -48,10 +48,7 @@ public class HeapSort {
      */
     private static void takeRoot(int[] arr, int len) {
         int last = len - 1;
-        arr[0] = returnFirst(arr[last], arr[last] = arr[0]);
-        /*int t = arr[0];
-        arr[0] = arr[last];
-        arr[last] = t;*/
+        swap(arr, 0, last);
         siftDown(arr, 0, len - 1);
     }
 
@@ -70,7 +67,7 @@ public class HeapSort {
             --len;
         }
         for(int j = 0; j < arr.length/2; ++j){
-            arr[j] = returnFirst(arr[(arr.length-1)-j], arr[(arr.length-1)-j] = arr[j]);
+            swap(arr, j, (arr.length-1)-j);
         }
     }
 }
