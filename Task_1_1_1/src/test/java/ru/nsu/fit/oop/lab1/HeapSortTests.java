@@ -2,13 +2,13 @@ package ru.nsu.fit.oop.lab1;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertArrayEquals;
+
 
 public class HeapSortTests {
     @ParameterizedTest
