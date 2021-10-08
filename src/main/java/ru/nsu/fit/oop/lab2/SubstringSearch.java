@@ -32,7 +32,7 @@ public class SubstringSearch {
     /**
      * Finds the indices of the occurrence of a substring {@param searchParam} in {@param file}
      *
-     * @param @param file InputStreamReader where we want to search occurrence
+     * @param file InputStreamReader where we want to search occurrence
      * @param searchParam array of char we want to find
      * @return array of indices of the occurrences. Count from 0
      * @throws IOException if some problems with a reading of the file
@@ -56,20 +56,7 @@ public class SubstringSearch {
                 if (prefixFunc[i + searchParam.length()] >= searchParam.length())
                     indexes.add(i - searchParam.length());
             }
-        /* without any preparation
-        String str = searchParam+'#'+text;
-        int[] values = new int[str.length()];
-        for(int i = 0; i <= searchParam.length(); ++i) values[i] = 0;
-        for(int i = searchParam.length()+1; i < str.length(); ++i){
-            int j = 0;
-            while(i + j < str.length() && str.charAt(j) == str.charAt(i+j)){
-                values[i+j] = max(values[i+j], j + 1);
-                ++j;
-            }
-            if(values[i]>=searchParam.length())
-                indexes.add(i-2*searchParam.length());
-        }
-        */
+        
             return indexes;
         }
 
