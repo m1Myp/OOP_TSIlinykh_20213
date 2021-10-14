@@ -26,6 +26,9 @@ public class Stack <T>{
     {
         return id;
     }
+    /**
+     * increasing the maximum number of elements in the stack and make array with this length, copy prev arr to this
+     */
     @SuppressWarnings("unchecked")
     private void realloc()
     {
