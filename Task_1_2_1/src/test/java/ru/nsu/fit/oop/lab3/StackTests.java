@@ -12,7 +12,7 @@ public class StackTests {
     @Test
     public void testTypeInt()
     {
-        Stack <Integer> s = new Stack<>(5);
+        Stack <Integer> s = new Stack<>(5, Integer.class);
         for (int i =0 ; i < 5; i++)
             s.push(i);
 
@@ -24,7 +24,7 @@ public class StackTests {
     @Test
     public void testTypeString()
     {
-        Stack <String> s = new Stack<>(3);
+        Stack <String> s = new Stack<>(3, String.class);
         s.push("I");
         s.push("Love");
         s.push("Programming");
@@ -37,20 +37,37 @@ public class StackTests {
     @Test
     public void testPopStack()
     {
-        Stack <String> s = new Stack<>(3);
-        Stack <String> ch = new Stack<>(2);
+        Stack <String> s = new Stack<>(3, String.class);
         s.push("I");
         s.push("Love");
         s.push("Programming");
         Stack<String> temp = s.popStack(2);
-        //Хз как тут ассерт сделать он падает хотя тут было 2 одинаковых стэка
         assertEquals(1, s.getAmount());
+        assertEquals("I", s.pop());
+
+    }
+
+    @Test
+    public void testPushStack()
+    {
+        Stack <Integer> s = new Stack<>(3, Integer.class);
+        Stack <Integer> temp = new Stack<>(2, Integer.class);
+        temp.push(0);
+        temp.push(1);
+        temp.push(2);
+        s.push(3);
+        s.pushStack(temp);
+        for(int i = 2; i >= 0; --i) {
+            assertEquals(i, s.pop());
+            assertEquals(i+1, s.getAmount());
+        }
+        assertEquals(3, s.pop());
     }
 
     @Test
     public void testOfRealloc()
     {
-        Stack <Integer> s = new Stack<>(1);
+        Stack <Integer> s = new Stack<>(1, Integer.class);
         for (int i =0 ; i < 100; i++)
             s.push(i);
         for (int i =99 ; i >= 0; i--)
@@ -62,7 +79,7 @@ public class StackTests {
     {
         assertThrows(EmptyStackException.class,
                 ()->{
-                    Stack <Integer> s = new Stack<>(3);
+                    Stack <Integer> s = new Stack<>(3, Integer.class);
                     s.pop();
                 });
     }
@@ -72,7 +89,7 @@ public class StackTests {
     {
         assertThrows(EmptyStackException.class,
                 ()->{
-                    Stack <String> s = new Stack<>(3);
+                    Stack <String> s = new Stack<>(3, String.class);
                     s.push("I");
                     s.push("Love");
                     s.push("Programming");
