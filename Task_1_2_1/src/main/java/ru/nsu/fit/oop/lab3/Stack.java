@@ -8,7 +8,7 @@ public class Stack <T>{
 
     private T[] arr;
     private int id;
-    private Class<T> stackClass;
+    private final Class<T> stackClass;
 
 
     @SuppressWarnings("unchecked")
