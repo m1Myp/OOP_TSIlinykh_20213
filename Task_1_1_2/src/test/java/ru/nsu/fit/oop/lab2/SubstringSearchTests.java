@@ -28,7 +28,7 @@ public class SubstringSearchTests {
     @MethodSource("allTests")
     public void StringReaderTests(String fileName, String subStr, String str, int[] expectedResult) throws IOException {
         StringReader StringReader = new StringReader(str);
-        ArrayList<Integer> kmpSearch = SubstringSearch.KMPSearch(StringReader, subStr);
+        ArrayList<Integer> kmpSearch = SubstringSearch.finiteStateMashine(StringReader, subStr);
         int[] result = kmpSearch.stream().mapToInt(i -> i).toArray();
         assertArrayEquals(expectedResult, result);
         StringReader.close();
@@ -42,7 +42,7 @@ public class SubstringSearchTests {
     public void FileReaderTests(String fileName, String subStr, String str, int[] expectedResult) throws IOException {
         createTextFile(fileName, str);
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8);
-        ArrayList<Integer> kmpSearch = SubstringSearch.KMPSearch(inputStreamReader, subStr);
+        ArrayList<Integer> kmpSearch = SubstringSearch.finiteStateMashine(inputStreamReader, subStr);
         int[] result = kmpSearch.stream().mapToInt(i -> i).toArray();
         assertArrayEquals(expectedResult, result);
         inputStreamReader.close();
@@ -57,8 +57,7 @@ public class SubstringSearchTests {
                 Arguments.of("/temp/input.txt", "ara", "ararara arara araara", new int[]{0, 2, 4, 8, 10, 14, 17}),
                 Arguments.of("/temp/input.txt", "qqqq", "ararara arara araara", new int[]{}),
                 Arguments.of("/temp/input.txt", "b",
-                        "a".repeat(10000) + 'b' + " a".repeat(10000), new int[]{10000})
-                //Тут было 10 лямов но я сделал буфферизирова ввод и постарел (я мог сделать построчный но вдруг меня забанят???)
+                        "a".repeat(10000000) + 'b' + " a".repeat(10000000), new int[]{10000000})
         );
     }
 
