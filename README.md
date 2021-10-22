@@ -1,3 +1,1 @@
-Единственное что я могу сказать
-
-![alt text](https://github.com/m1Myp/tsilinykh_19214/blob/master/311.jpg)
+![alt text](https://sun4-12.userapi.com/impg/-rwk6CH-wVIny8o7VmPwVPSVzRJ8u_TNy6YUgw/9SU-1HfuH4Q.jpg?size=1080x607&quality=96&sign=a59857883e18873124db1feb63733144&type=album)
