@@ -26,7 +26,7 @@ public class GradeBook {
         double[] averageArray = new double[countOfSemesters];
         int[] amount = new int[countOfSemesters];
         int[] sum = new int[countOfSemesters];
-        for(int i = 0 ; i <= courses.length; ++i)
+        for(int i = 0 ; i < courses.length; ++i)
         {
             for(int j = 0 ; j < courses[i].getMarks().length; ++j)
             {
@@ -34,8 +34,12 @@ public class GradeBook {
                 sum[courses[i].getMarks()[j].getSemester()] += courses[i].getMarks()[j].getMark();
             }
         }
-        for(int i = 0; i < countOfSemesters; ++i)
-            averageArray[i] = (double) sum[i]/ (double) amount[i];
+        for(int i = 0; i < countOfSemesters; ++i) {
+            if(amount[i] == 0)
+                averageArray[i] = 0;
+            else
+                averageArray[i] = (double) sum[i] / (double) amount[i];
+        }
         return averageArray;
     }
 
@@ -44,10 +48,15 @@ public class GradeBook {
      */
     public double averageMark()
     {
-        int answer = 0;
-        for(int i = 0; i < countOfSemesters; ++i)
-            answer += semesterAverage()[i];
-        return answer;
+        double answer = 0;
+        int amount = 0;
+        double[] semAvrg = semesterAverage();
+        for(int i = 0; i < countOfSemesters; ++i) {
+            answer += semAvrg[i];
+            if(semAvrg[i]>0)
+                ++amount;
+        }
+        return answer/(double) amount;
     }
 
 
@@ -58,7 +67,6 @@ public class GradeBook {
     public boolean redDiploma(){
         int exs = 0;
         int amount = 0;
-        boolean diplomWorkFlag = false;
         for(int i = 0; i < courses.length; ++i){
             for(int j = 0 ; j < courses[i].getMarks().length; ++j)
             {
@@ -87,7 +95,7 @@ public class GradeBook {
      */
     public boolean higherScholarship(int selectedSemester)
     {
-        if(selectedSemester == 1)
+        if(selectedSemester == 0)
             return false;
         if(semesterAverage()[selectedSemester-1] != 5)
             return false;
