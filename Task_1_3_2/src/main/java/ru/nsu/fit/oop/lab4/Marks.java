@@ -1,8 +1,8 @@
 package ru.nsu.fit.oop.lab4;
 
 public class Marks {
-    private static int semester;
-    private static int mark;
+    private final int semester;
+    private final int mark;
     public Marks(int sem, int mk){
         mark = mk;
         semester = sem;
