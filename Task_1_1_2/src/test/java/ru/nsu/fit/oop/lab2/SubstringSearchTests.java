@@ -28,8 +28,8 @@ public class SubstringSearchTests {
     @MethodSource("allTests")
     public void StringReaderTests(String fileName, String subStr, String str, int[] expectedResult) throws IOException {
         StringReader StringReader = new StringReader(str);
-        ArrayList<Integer> kmpSearch = SubstringSearch.finiteStateMashine(StringReader, subStr);
-        int[] result = kmpSearch.stream().mapToInt(i -> i).toArray();
+        ArrayList<Integer> fsm = SubstringSearch.finiteStateMashine(StringReader, subStr);
+        int[] result = fsm.stream().mapToInt(i -> i).toArray();
         assertArrayEquals(expectedResult, result);
         StringReader.close();
 
@@ -42,8 +42,8 @@ public class SubstringSearchTests {
     public void FileReaderTests(String fileName, String subStr, String str, int[] expectedResult) throws IOException {
         createTextFile(fileName, str);
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8);
-        ArrayList<Integer> kmpSearch = SubstringSearch.finiteStateMashine(inputStreamReader, subStr);
-        int[] result = kmpSearch.stream().mapToInt(i -> i).toArray();
+        ArrayList<Integer> fsm = SubstringSearch.finiteStateMashine(inputStreamReader, subStr);
+        int[] result = fsm.stream().mapToInt(i -> i).toArray();
         assertArrayEquals(expectedResult, result);
         inputStreamReader.close();
 
