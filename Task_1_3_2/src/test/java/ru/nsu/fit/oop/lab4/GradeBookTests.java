@@ -18,7 +18,7 @@ public class GradeBookTests {
         return mks;
     }
 
-    GradeBook CreateGradebook(String name, int[][][] marks){
+    GradeBook CreateGradeBook(String name, int[][][] marks){
         String[] lessons = {
                 "matan", "matlog", "english", "pe", "platforms", "imperative", "declarative", "history", "russian"
         };
@@ -32,7 +32,7 @@ public class GradeBookTests {
     @ParameterizedTest
     @MethodSource("allTests")
     public void GradeBookTests(String name, int[][][] marks) {
-        GradeBook gb = CreateGradebook(name, marks);
+        GradeBook gb = CreateGradeBook(name, marks);
         if(name == "Timur Ilinykh"){
             assertFalse(gb.redDiploma());
             assertFalse(gb.higherScholarship(0));
